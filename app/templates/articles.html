@@ -1,11 +1,9 @@
 {% extends 'base.html' %}
-
 {% block styles %}
   {{super()}}
   <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
 {% endblock %}
-
-{% from 'display_news_macro.html' import display_sources%}
+{% from 'display_news_macro.html' import display_articles%}
 {% block content %}
-<div>{{ display_sources(sources)}}</div>
+<div>{{ display_articles(articles)}}</div>
 {% endblock %}

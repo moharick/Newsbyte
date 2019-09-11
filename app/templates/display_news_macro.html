@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% macro display_articles(articles) %}
+<div class="container-fluid">
+    <section>
+        <div class="row wow fadeIn card-columns">
+            {% for article in articles %}
+            <div class="col-md-4 card">
+                <div class="card-body ">
+                    <h4 class="card-title animated fadeInRight">
+                        <img src="{{article.urlToImage}}" alt="" class="card-img-top">
+                    </h4>
+                    <hr>
+                    <ul class=" card-text list-group list-group-flush">
+                        <li class="list-group-item animated fadeInRight">{{article.description |truncate(100)}}
+                        </li>
+                        <li class="list-group-item animated fadeInRight text-center">{{ article.author}}</li>
+                    </ul>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+{% endmacro %}
+{% macro display_sources(sources) %}
+<div class="container-fluid sources">
+    <div class="jumbotron">
+        <div class="">
+            <h1 class="text-center" style="font-family: 'Courgette';">NEWSBYTE</h1>
+        </div>
+    </div>
+    <section>
+        <div class="row wow fadeIn card-columns">
+            {% for source in sources %}
+            <div class="col-md-4 card">
+                <div class="card-body ">
+                    <h4 class="card-title animated fadeInRight">
+                        <p class="text-center">{{source.name}} </p>
+                    </h4>
+                    <hr>
+                    <ul class=" card-text list-group list-group-flush">
+                        <li class="list-group-item animated fadeInRight">{{source.description}}
+                        </li>
+                        <li class="list-group-item animated fadeInRight text-center">Category :
+                            {{ source.category }}</li>
+                    </ul>
+                </div>
+                <div class="rounded-bottom lighten-3 text-center pt-3">
+                    <ul class="list-unstyled list-inline font-small">
+                        <a target="_blank" href="/article/{{source.id}}" class="btn btn-dark ">View more
+                            <i class="fas fa-fighter-jet"></i>
+                        </a>
+                    </ul>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+{% endmacro %}
+
+{% macro display_source_articles(source_articles) %}
+<div class="container-fluid single_article" style="background-image: url('../static/new.jpg')">
+    <div class="overlay">
+        {% for article in articles %}
+        <h1 class="text-white txt">{{source}} articles</h1>
+        {% endfor %}
+    </div>
+    <div class="card-columns">
+        {% for article in source_articles %}
+        <div class="card">
+            <div class="card-body">
+                <p>{{article.description}}</p>
+                <p>{{ article.publishedAt}}</p>
+            </div>
+            <p>{{ article.url }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endmacro %}
